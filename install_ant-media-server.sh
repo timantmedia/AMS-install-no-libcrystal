@@ -28,10 +28,10 @@ VERSION=
 
 update_script () {
   SCRIPT_NAME="$0"
-  remote_file="$(curl -sL https://raw.githubusercontent.com/timantmedia/AMS-install-no-libcrystal/main/install_ant-media-server.sh | md5sum | cut -d ' ' -f 1)"
+  remote_file="$(curl -sL https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh | md5sum | cut -d ' ' -f 1)"
   local_file="$(md5sum $0 | cut -d '' -f 1 )"
   if [ "$remote_file" != "$local_file" ]; then
-    wget -O $0 -q https://raw.githubusercontent.com/timantmedia/AMS-install-no-libcrystal/main/install_ant-media-server.sh
+    wget -O $0 -q https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh
     chmod +x $0
     echo "Updated the installation script. Please rerun the script."
     exit 1
@@ -296,7 +296,7 @@ if [ "$ID" == "ubuntu" ]; then
       check_version
       if [ "x86_64" == $ARCH ]; then
         #$SUDO apt-get install libcrystalhd-dev -y
-        check
+        #check
       fi
   fi
 elif [ "$ID" == "centos" ] || [ "$ID" == "rocky" ] || [ "$ID" == "almalinux" ] || [ "$ID" == "rhel" ]; then
@@ -306,7 +306,7 @@ elif [ "$ID" == "centos" ] || [ "$ID" == "rocky" ] || [ "$ID" == "almalinux" ] |
   VERSION=$(unzip -p /tmp/ant-media-server/ant-media-server.jar | grep -a "Implementation-Version"|cut -d' ' -f2 | tr -d '\r')
   if [ "$(printf '%s\n' "$REQUIRED_VERSION" "$VERSION" | sort -V | head -n1)" != "$REQUIRED_VERSION" ]; then
     check_version
-    $SUDO yum -y install libcrystalhd
+    #$SUDO yum -y install libcrystalhd
     check
   fi
   
