@@ -28,10 +28,10 @@ VERSION=
 
 update_script () {
   SCRIPT_NAME="$0"
-  remote_file="$(curl -sL https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh | md5sum | cut -d ' ' -f 1)"
+  remote_file="$(curl -sL https://raw.githubusercontent.com/timantmedia/AMS-install-no-libcrystal/main/install_ant-media-server.sh | md5sum | cut -d ' ' -f 1)"
   local_file="$(md5sum $0 | cut -d '' -f 1 )"
   if [ "$remote_file" != "$local_file" ]; then
-    wget -O $0 -q https://raw.githubusercontent.com/ant-media/Scripts/master/install_ant-media-server.sh
+    wget -O $0 -q https://raw.githubusercontent.com/timantmedia/AMS-install-no-libcrystal/main/install_ant-media-server.sh
     chmod +x $0
     echo "Updated the installation script. Please rerun the script."
     exit 1
